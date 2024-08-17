@@ -21,16 +21,16 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_REGISTRY_ACCESS_TOKEN }}
 
       - name: Build php-fpm container image
-        run: docker build ./php-fpm -t ${{ secrets.CONTAINER_REGISTRY_NAME }}/php-fpm:$(echo $GITHUB_SHA | head -c7)
+        run: docker build ./php-fpm -t ${{ vars.CONTAINER_REGISTRY_NAME }}/php-fpm:$(echo $GITHUB_SHA | head -c7)
 
       - name: Build nginx container image
-        run: docker build ./nginx -t ${{ secrets.CONTAINER_REGISTRY_NAME }}/nginx:$(echo $GITHUB_SHA | head -c7)
+        run: docker build ./nginx -t ${{ vars.CONTAINER_REGISTRY_NAME }}/nginx:$(echo $GITHUB_SHA | head -c7)
 
       - name: Log in to digital ocean container registry for push
         run: doctl registry login --expiry-seconds 1200
 
       - name: Push php-fpm image
-        run: docker push ${{ secrets.CONTAINER_REGISTRY_NAME }}/php-fpm:$(echo $GITHUB_SHA | head -c7)
+        run: docker push ${{ vars.CONTAINER_REGISTRY_NAME }}/php-fpm:$(echo $GITHUB_SHA | head -c7)
 
       - name: Push nginx image
-        run: docker push ${{ secrets.CONTAINER_REGISTRY_NAME }}/nginx:$(echo $GITHUB_SHA | head -c7)
+        run: docker push ${{ vars.CONTAINER_REGISTRY_NAME }}/nginx:$(echo $GITHUB_SHA | head -c7)
