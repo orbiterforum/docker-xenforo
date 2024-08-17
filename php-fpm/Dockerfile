@@ -1,8 +1,8 @@
 # https://hub.docker.com/_/php/
-FROM php:8.2.7-fpm-alpine3.18
+FROM php:8.3-fpm-alpine3.20
 
-ARG DOCKER_XENFORO_PHP_EXT_INSTALL
-ARG DOCKER_XENFORO_PHP_PECL_INSTALL
+ARG DOCKER_XENFORO_PHP_EXT_INSTALL="exif gd gmp mysqli opcache pcntl soap sockets zip"
+ARG DOCKER_XENFORO_PHP_PECL_INSTALL="apcu igbinary memcached redis"
 
 COPY . /tmp/.
 RUN /tmp/build.sh

@@ -14,8 +14,6 @@ TMP_PACKAGES="$TMP_PACKAGES gd-dev"             # gd
 TMP_PACKAGES="$TMP_PACKAGES git"
 RUN_PACKAGES="$RUN_PACKAGES gmp"                # gmp
 TMP_PACKAGES="$TMP_PACKAGES gmp-dev"            # gmp
-RUN_PACKAGES="$RUN_PACKAGES imagemagick"        # imagick
-TMP_PACKAGES="$TMP_PACKAGES imagemagick-dev"    # imagick
 TMP_PACKAGES="$TMP_PACKAGES libjpeg-turbo-dev"  # gd
 RUN_PACKAGES="$RUN_PACKAGES libltdl"            # gd?
 RUN_PACKAGES="$RUN_PACKAGES libmemcached"       # memcached
@@ -53,7 +51,6 @@ docker-php-source extract
 eval "docker-php-ext-install $DOCKER_XENFORO_PHP_EXT_INSTALL"
 eval "pecl install $DOCKER_XENFORO_PHP_PECL_INSTALL"
 eval "docker-php-ext-enable $DOCKER_XENFORO_PHP_PECL_INSTALL"
-/tmp/build_fpm.sh
 docker-php-source delete
 
 # clean up
